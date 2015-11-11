@@ -14,7 +14,6 @@ class Mattermost extends Adapter
         username: @username,
         text: str
       })
-      console.log data
       @robot.http(@url)
         .header('Content-Type', 'application/json')
         .post(data) (err, res, body) ->
@@ -37,6 +36,15 @@ class Mattermost extends Adapter
     @url = process.env.MATTERMOST_INCOME_URL 
     @icon = process.env.MATTERMOST_ICON_URL 
     @username = process.env.MATTERMOST_HUBOT_USERNAME
+    unless @token?
+      @robot.logger.emergency "MATTERMOST_TOKEN is required"
+      process.exit 1
+    unless @endpoint?
+      @robot.logger.emergency "MATTERMOST_ENDPOINT is required"
+      process.exit 1
+    unless @url?
+      @robot.logger.emergency "MATTERMOST_INCOME_URL is required"
+      process.exit 1
     @robot.router.post @endpoint, (req, res) =>
      if @token is req.body.token
        msg = req.body.text
