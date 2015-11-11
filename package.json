@@ -1,18 +1,18 @@
 {
     "name": "hubot-mattermost",
-    "version": "0.0.5",
-    "description": "Ahubotadapterformattermost",
+    "version": "1.0.1",
+    "description": "A hubot adapter for mattermost",
     "homepage": "https: //github.com/renanvicente/hubot-mattermost#readme",
     "main": "src/mattermost.coffee",
     "scripts": {
-        "test": "echo\"Error: notestspecified\"&&exit1"
+        "test": "echo \"Error: no test specified\" && exit 1"
     },
     "repository": {
         "type": "git",
-        "url": "git+https: //github.com/renanvicente/hubot-mattermost.git"
+        "url": "git+https://github.com/renanvicente/hubot-mattermost.git"
     },
     "bugs": {
-        "url": "https: //github.com/renanvicente/hubot-mattermost/issues"
+        "url": "https://github.com/renanvicente/hubot-mattermost/issues"
     },
     "keywords": [
         "hubot",
@@ -22,9 +22,9 @@
         "webhook"
     ],
     "author": {
-        "name": "RenanVicente",
+        "name": "Renan Vicente",
         "email": "renanvice@gmail.com",
-        "url": "https: //github.com/renanvicente"
+        "url": "https://github.com/renanvicente"
     },
     "license": "MIT",
     "dependencies": {
