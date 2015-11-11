@@ -1,6 +1,6 @@
 {
   "name": "hubot-mattermost",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A hubot adapter for mattermost",
   "homepage": "https://github.com/renanvicente/hubot-mattermost",
   "main": "src/mattermost.coffee",
