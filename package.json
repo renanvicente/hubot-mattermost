@@ -1,6 +1,6 @@
 {
     "name": "hubot-mattermost",
-    "version": "0.0.4",
+    "version": "0.0.5",
     "description": "Ahubotadapterformattermost",
     "homepage": "https: //github.com/renanvicente/hubot-mattermost#readme",
     "main": "src/mattermost.coffee",
