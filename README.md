@@ -1,3 +1,20 @@
+![Mattermost logo](https://avatars0.githubusercontent.com/u/9828093?v=3&s=200)
+
+[![Downloads](https://img.shields.io/npm/dm/hubot-mattermost.svg)](https://www.npmjs.com/package/hubot-mattermost)
+[![Version](https://img.shields.io/npm/v/hubot-mattermost.svg)](https://github.com/anroots/hubot-mattermost/releases)
+[![Licence](https://img.shields.io/npm/l/express.svg)](https://github.com/anroots/hubot-mattermost/blob/master/LICENSE)
+
+# hubot-mattermost
+
+[Hubot](https://github.com/github/hubot) adapter for [Mattermost](http://www.mattermost.org/).
+Enables to add a Hubot bot to Mattermost.
+
+## Getting your bot connected to Mattermost
+
+Here is a sample run:
+
+![picture of a sample interaction with mattermost](https://cloud.githubusercontent.com/assets/5564668/11096122/672edb84-8890-11e5-9a69-4662a42b3012.png)
+
 ## Installation
 
 * Follow the "[Getting Started With Hubot](https://github.com/github/hubot/blob/master/docs/README.md)" guide to get a local installation of Hubot
