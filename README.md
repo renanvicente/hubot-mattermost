@@ -17,10 +17,11 @@ Here is a sample run:
 
 ## Installation
 
-* Follow the "[Getting Started With Hubot](https://github.com/github/hubot/blob/master/docs/README.md)" guide to get a local installation of Hubot
-* When `yo hubot` command asks for an adapter, enter "mattermost"
-* Create a incoming webhook and outgoing webhook integration in your mattermost. You can follow the instruction on [Incoming Webhooks](https://github.com/mattermost/platform/blob/master/doc/integrations/webhooks/Incoming-Webhooks.md) and [Outgoing Webhooks](https://github.com/mattermost/platform/blob/master/doc/integrations/webhooks/Outgoing-Webhooks.md) to setup.
+* Follow the "[Getting Started With Hubot](https://hubot.github.com/docs/)" guide to get a local installation of Hubot
+* When you run the command `yo hubot` it should ask for an adapter, input "mattermost" so it can download this adapter automatically for you
+* Create an incoming webhook and outgoing webhook integration in your mattermost. You can follow the instructions on [Incoming Webhooks](https://github.com/mattermost/platform/blob/master/doc/integrations/webhooks/Incoming-Webhooks.md#enabling-incoming-webhooks) and [Outgoing Webhooks](https://github.com/mattermost/platform/blob/master/doc/integrations/webhooks/Outgoing-Webhooks.md#enabling-outgoing-webhooks) to setup.
 * Set the environment variables MATTERMOST_ENDPOINT, MATTERMOST_INCOME_URL and MATTERMOST_TOKEN based on your mattermost configuration.
+* ***It's important to remember that if you don't run Hubot alongside with Mattermost (locally) you must ensure that Mattermost instance can connect to the machine where Hubot is installed as it will be running on port 8080***. This is due to Webhooks nature (both Incoming and Outgoing) where a HTTP POST will be send both ways for communication purposes (sending and receiving Mattermost/Hubot messages).
 
 ## Example Installation
 
@@ -31,9 +32,9 @@ yo hubot --adapter mattermost
 
 ## Environment variables
 
-The adapter requires the following environment variables to be defined:
+The adapter requires the following environment variables to be defined prior to run a Hubot instance:
 
-* `MATTERMOST_ENDPOINT` _string, default: none_ - URI that you want the hubot to listen, need to be the uri you specified when creating your outgoing webhook on mattermost. Example: if you create your outgoing webhook with http://127.0.0.1:8080/hubot/incoming you should set it with /hubot/incoming.
+* `MATTERMOST_ENDPOINT` _string, default: none_ - URI that you want hubot to listen, need to be the uri you specified when creating your outgoing webhook on mattermost. Example: if you create your outgoing webhook with http://127.0.0.1:8080/hubot/incoming you should set it with /hubot/incoming.
 * `MATTERMOST_INCOME_URL` _string, default: none_ - Your incoming webhook url. Example: http://<your mattermost instance>:<port>/hooks/ncwc66caqf8d7c4gnqby1196qo
 * `MATTERMOST_TOKEN` _string, default: none_ - Token from your outgoing webhook.
 
@@ -50,7 +51,7 @@ export MATTERMOST_CHANNEL=town-square # optional: if you want to override your c
 export MATTERMOST_INCOME_URL=http://<your mattermost instance>:<port>/hooks/ncwc66caqf8d7c4gnqby1196qo # your mattermost income url
 export MATTERMOST_TOKEN=oqwx9d4khjra8cw3zbis1w6fqy # your mattermost token
 export MATTERMOST_ICON_URL=https://s3-eu-west-1.amazonaws.com/renanvicente/toy13.png # optional: if you want to override hubot icon
-export MATTERMOST_HUBOT_USERNAME="moerae bot" # optional: if you want to override hubot name
+export MATTERMOST_HUBOT_USERNAME="matterbot" # optional: if you want to override hubot name
 
   ```
 
