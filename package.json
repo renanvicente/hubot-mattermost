@@ -1,35 +1,37 @@
 {
-  "name": "hubot-mattermost",
-  "version": "0.0.3",
-  "description": "A hubot adapter for mattermost",
-  "homepage": "https://github.com/renanvicente/hubot-mattermost",
-  "main": "src/mattermost.coffee",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/renanvicente/hubot-mattermost.git"
-  },
-  "bugs": {
-    "url": "https://github.com/renanvicente/hubot-mattermost/issues"
-  },
-  "keywords": [
-    "hubot",
-    "mattermost",
-    "bot"
-  ],
-  "author": {
-    "name": "Renan Vicente",
-    "email": "renanvice@gmail.com",
-    "url": "https://github.com/renanvicente"
-  },
-  "license": "MIT",
-  "dependencies": {
-    "parent-require": "^1.0.0"
-  },
-  "devDependencies": {
-    "coffee-script": ">=1.2.0",
-    "hubot": ">=2.3.0"
-  }
+    "name": "hubot-mattermost",
+    "version": "0.0.4",
+    "description": "Ahubotadapterformattermost",
+    "homepage": "https: //github.com/renanvicente/hubot-mattermost#readme",
+    "main": "src/mattermost.coffee",
+    "scripts": {
+        "test": "echo\"Error: notestspecified\"&&exit1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https: //github.com/renanvicente/hubot-mattermost.git"
+    },
+    "bugs": {
+        "url": "https: //github.com/renanvicente/hubot-mattermost/issues"
+    },
+    "keywords": [
+        "hubot",
+        "mattermost",
+        "bot",
+        "adapter",
+        "webhook"
+    ],
+    "author": {
+        "name": "RenanVicente",
+        "email": "renanvice@gmail.com",
+        "url": "https: //github.com/renanvicente"
+    },
+    "license": "MIT",
+    "dependencies": {
+        "parent-require": "^1.0.0"
+    },
+    "devDependencies": {
+        "coffee-script": ">=1.2.0",
+        "hubot": ">=2.3.0"
+    }
 }
