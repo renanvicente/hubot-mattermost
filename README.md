@@ -41,8 +41,9 @@ The adapter requires the following environment variables to be defined prior to 
 In addition, the following optional variables can be set:
 
 * `MATTERMOST_CHANNEL` _string, default: none_ - Override the channel that you want to reply to.
-* `MATTERMOST_ICON_URL` _string, default: none_ - if Enable Overriding of Icon from Webhooks is enabled you can set a url with the icon that you want for your hubot.
-* `MATTERMOST_HUBOT_USERNAME` _string, default: none_ - if Enable Overriding of Usernames from Webhooks you can set a custom username to show in mattermost.
+* `MATTERMOST_ICON_URL` _string, default: none_ - If Enable Overriding of Icon from Webhooks is enabled you can set a url with the icon that you want for your hubot.
+* `MATTERMOST_HUBOT_USERNAME` _string, default: none_ - If Enable Overriding of Usernames from Webhooks you can set a custom username to show in mattermost.
+* `MATTERMOST_SELFSIGNED_CERT` _boolean, default: none_ - If true it will ignore if the MATTERMOST_ICON_URL has a self signed certificate.
 
 ## Exemple for Environment variables
   ```sh
@@ -52,6 +53,7 @@ export MATTERMOST_INCOME_URL=http://<your mattermost instance>:<port>/hooks/ncwc
 export MATTERMOST_TOKEN=oqwx9d4khjra8cw3zbis1w6fqy # your mattermost token
 export MATTERMOST_ICON_URL=https://s3-eu-west-1.amazonaws.com/renanvicente/toy13.png # optional: if you want to override hubot icon
 export MATTERMOST_HUBOT_USERNAME="matterbot" # optional: if you want to override hubot name
+export MATTERMOST_SELFSIGNED_CERT=true # optional: if you want to ignore self signed certificate
 
   ```
 

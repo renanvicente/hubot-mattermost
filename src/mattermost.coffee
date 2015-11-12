@@ -36,6 +36,8 @@ class Mattermost extends Adapter
     @url = process.env.MATTERMOST_INCOME_URL 
     @icon = process.env.MATTERMOST_ICON_URL 
     @username = process.env.MATTERMOST_HUBOT_USERNAME
+    @selfsigned = this.getBool(process.env.MATTERMOST_SELFSIGNED_CERT)
+    if @selfsigned then process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0"
     unless @token?
       @robot.logger.emergency "MATTERMOST_TOKEN is required"
       process.exit 1
@@ -54,6 +56,9 @@ class Mattermost extends Adapter
        @robot.receive new TextMessage(user, msg)
        res.writeHead 200, 'Content-Type': 'text/plain'
        res.end()
+
+  getBool: (val) ->
+    return !!JSON.parse(String(val).toLowerCase());
 
 exports.use = (robot) ->
   new Mattermost robot
