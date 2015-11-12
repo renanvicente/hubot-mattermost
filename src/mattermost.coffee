@@ -36,7 +36,7 @@ class Mattermost extends Adapter
     @url = process.env.MATTERMOST_INCOME_URL 
     @icon = process.env.MATTERMOST_ICON_URL 
     @username = process.env.MATTERMOST_HUBOT_USERNAME
-    @selfsigned = this.getBool(process.env.MATTERMOST_SELFSIGNED_CERT)
+    @selfsigned = this.getBool(process.env.MATTERMOST_SELFSIGNED_CERT) if process.env.MATTERMOST_SELFSIGNED_CERT
     if @selfsigned then process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0"
     unless @token?
       @robot.logger.emergency "MATTERMOST_TOKEN is required"
