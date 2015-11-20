@@ -50,7 +50,7 @@ class Mattermost extends Adapter
     @robot.router.post @endpoint, (req, res) =>
      # split string values by ',' as process.env return type string no matter what has been defined (eg array, string, int)
      for token in @tokens.split(',')     
-       if @token is req.body.token
+       if token is req.body.token
          msg = req.body.text
          user = @robot.brain.userForId(req.body.user_id)
          user.name = req.body.user_name
