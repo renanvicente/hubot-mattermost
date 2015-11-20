@@ -43,9 +43,9 @@ In addition, the following optional variables can be set:
 * `MATTERMOST_CHANNEL` _string, default: none_ - Override the channel that you want to reply to.
 * `MATTERMOST_ICON_URL` _string, default: none_ - If Enable Overriding of Icon from Webhooks is enabled you can set a url with the icon that you want for your hubot.
 * `MATTERMOST_HUBOT_USERNAME` _string, default: none_ - If Enable Overriding of Usernames from Webhooks you can set a custom username to show in mattermost.
-* `MATTERMOST_SELFSIGNED_CERT` _boolean, default: none_ - If true it will ignore if the MATTERMOST_ICON_URL has a self signed certificate.
+* `MATTERMOST_SELFSIGNED_CERT` _boolean, default: none_ - If true it will ignore if MATTERMOST_ENDPOINT has a self signed certificate.
 
-## Exemple for Environment variables
+## Example for Environment variables
   ```sh
 export MATTERMOST_ENDPOINT=/hubot/incoming # listen endpoint
 export MATTERMOST_CHANNEL=town-square # optional: if you want to override your channel
@@ -56,6 +56,25 @@ export MATTERMOST_HUBOT_USERNAME="matterbot" # optional: if you want to override
 export MATTERMOST_SELFSIGNED_CERT=true # optional: if you want to ignore self signed certificate
 
   ```
+
+## Example with Hubot sending to multiple channels
+
+Although Mattermost doesn't allow multiple channels on a single Incoming/Outgoing hook you can do the following in order to allow Hubot to listen to multiple channels:
+
+* Create an Outgoing Hook for each channel to wish to have Hubot. That will give you multiple tokens
+* Set MATTERMOST_TOKEN global variable with multiple tokens separated by comma
+
+Example:
+```sh
+export MATTERMOST_ENDPOINT=/hubot/incoming # listen endpoint
+export MATTERMOST_INCOME_URL=http://localhost:8065/hooks/3eo1wjwyxibnmd5rsusk4h4pgh # your mattermost income url
+export MATTERMOST_TOKEN="epboqd78ufyi58nxktgzq9zpho,7ftco7zg5fdkixw7j3okmuo3eo" # your mattermost token for **each Channel**
+export MATTERMOST_ICON_URL=https://s3-eu-west-1.amazonaws.com/renanvicente/toy13.png # optional: if you want to override hubot icon
+export MATTERMOST_HUBOT_USERNAME="matterbot" # optional: if you want to override hubot name
+```
+
+Note that there is ***no*** need to create multiple Incoming Hooks as we can use a single Incoming Hook but specify what channel we want to send the message to as [described in the documentation](http://docs.mattermost.org/integrations/webhooks/Incoming-Webhooks/index.html).
+
 
 Run hubot with mattermost adapter.
   ```sh

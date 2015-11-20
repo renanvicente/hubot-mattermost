@@ -10,7 +10,7 @@ class Mattermost extends Adapter
     for str in strings
       data = JSON.stringify({
         icon_url: @icon,
-        channel: @channel,
+        channel: @channel ? envelope.user.room, # send back to source channel only if not overwritten,
         username: @username,
         text: str
       })
@@ -30,7 +30,7 @@ class Mattermost extends Adapter
   run: ->
     # Tell Hubot we're connected so it can load scripts
     @emit "connected"
-    @token = process.env.MATTERMOST_TOKEN
+    @tokens = process.env.MATTERMOST_TOKEN
     @channel = process.env.MATTERMOST_CHANNEL
     @endpoint = process.env.MATTERMOST_ENDPOINT
     @url = process.env.MATTERMOST_INCOME_URL 
@@ -38,7 +38,7 @@ class Mattermost extends Adapter
     @username = process.env.MATTERMOST_HUBOT_USERNAME
     @selfsigned = this.getBool(process.env.MATTERMOST_SELFSIGNED_CERT) if process.env.MATTERMOST_SELFSIGNED_CERT
     if @selfsigned then process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0"
-    unless @token?
+    unless @tokens?
       @robot.logger.emergency "MATTERMOST_TOKEN is required"
       process.exit 1
     unless @endpoint?
@@ -48,14 +48,16 @@ class Mattermost extends Adapter
       @robot.logger.emergency "MATTERMOST_INCOME_URL is required"
       process.exit 1
     @robot.router.post @endpoint, (req, res) =>
-     if @token is req.body.token
-       msg = req.body.text
-       user = @robot.brain.userForId(req.body.user_id)
-       user.name = req.body.user_name
-       user.room = req.body.channel_name
-       @robot.receive new TextMessage(user, msg)
-       res.writeHead 200, 'Content-Type': 'text/plain'
-       res.end()
+     # split string values by ',' as process.env return type string no matter what has been defined (eg array, string, int)
+     for token in @tokens.split(',')     
+       if @token is req.body.token
+         msg = req.body.text
+         user = @robot.brain.userForId(req.body.user_id)
+         user.name = req.body.user_name
+         user.room = req.body.channel_name
+         @robot.receive new TextMessage(user, msg)
+         res.writeHead 200, 'Content-Type': 'text/plain'
+         res.end()
 
   getBool: (val) ->
     return !!JSON.parse(String(val).toLowerCase());
