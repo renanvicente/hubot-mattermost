@@ -10,7 +10,7 @@ class Mattermost extends Adapter
     for str in strings
       data = JSON.stringify({
         icon_url: @icon,
-        channel: @channel ? envelope.user.room, # send back to source channel only if not overwritten,
+        channel: @channel ? envelope.user?.room ? envelope.room, # send back to source channel only if not overwritten,
         username: @username,
         text: str
       })
