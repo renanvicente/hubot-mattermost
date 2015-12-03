@@ -73,7 +73,7 @@ export MATTERMOST_ICON_URL=https://s3-eu-west-1.amazonaws.com/renanvicente/toy13
 export MATTERMOST_HUBOT_USERNAME="matterbot" # optional: if you want to override hubot name
 ```
 
-Note that there is ***no*** need to create multiple Incoming Hooks as we can use a single Incoming Hook but specify what channel we want to send the message to as [described in the documentation](http://docs.mattermost.org/integrations/webhooks/Incoming-Webhooks/index.html).
+Note that there is ***no*** need to create multiple Incoming Hooks as we can use a single Incoming Hook but specify what channel we want to send the message to as [described in the documentation](http://docs.mattermost.org/integrations/webhooks/Incoming-Webhooks.html).
 
 
 Run hubot with mattermost adapter.

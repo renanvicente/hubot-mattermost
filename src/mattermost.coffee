@@ -22,7 +22,7 @@ class Mattermost extends Adapter
 
   reply: (envelope, strings...) ->
     for str in strings
-      @send envelope.user, "@#{envelope.user.name}: #{str}"
+      @send envelope, "@#{envelope.user.name}: #{str}"
 
   command: (command, strings...) ->
     @send command, strings
