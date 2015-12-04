@@ -57,7 +57,7 @@ export MATTERMOST_SELFSIGNED_CERT=true # optional: if you want to ignore self si
 
   ```
 
-## Example with Hubot sending to multiple channels
+## Example with Hubot sending to multiple specific channels only
 
 Although Mattermost doesn't allow multiple channels on a single Incoming/Outgoing hook you can do the following in order to allow Hubot to listen to multiple channels:
 
@@ -80,6 +80,59 @@ Run hubot with mattermost adapter.
   ```sh
 bin/hubot -a mattermost
   ```
+
+## Example with Hubot sending to ANY public channel
+
+As pointed out by [Andre](https://github.com/devTechi) there's a [new Giphy implementation](https://github.com/mattermost/mattermost-integration-giphy) that leverages an Outgoing hook with **no channel set**, in which Mattermost allows us to send messages to any channel based on **Trigger Words** feature only.
+
+Therefore, if all you want to do is to have Hubot to send/reply to all public channels, all you will need to do is:
+
+* Create an Outgoing Hook, leave Channel untouched (blank), set the <Hubot Name> (e.g. *matterbot*) as Trigger Word and specify the callback URL as you would normally
+* Set *MATTERMOST_TOKEN* global variable with the token given by the newly Outgoing hook created
+
+Example of a hook created using this pattern:
+```sh
+URLs: http://localhost:8080/hubot/incoming
+Trigger Words: matterbot
+Token: 15r8ybrxhpgifc3rycdjrf6m8e
+```
+
+Example of global variables set that will send to **any public channel** if message starts with **matterbot**:
+```sh
+export MATTERMOST_ENDPOINT=/hubot/incoming # listen endpoint
+export MATTERMOST_INCOME_URL=http://localhost:8065/hooks/3eo1wjwyxibnmd5rsusk4h4pgh # your mattermost income url
+export MATTERMOST_TOKEN="epboqd78ufyi58nxktgzq9zpho,7ftco7zg5fdkixw7j3okmuo3eo" # your mattermost token
+export MATTERMOST_ICON_URL=https://s3-eu-west-1.amazonaws.com/renanvicente/toy13.png # optional: if you want to override hubot icon
+export MATTERMOST_HUBOT_USERNAME="matterbot" # optional: if you want to override hubot name
+```
+
+### Known issues
+
+With this approach [**Hubot.hear method**](https://hubot.github.com/docs/scripting/#hearing-and-responding) will be invalidated, since a POST message will only be sent from Mattermost if Hubot name (_MATTERMOST_HUBOT_USERNAME="matterbot"_) is mentioned.
+
+So, if you have the following in any of your custom scripts -- that will **no longer work**:
+
+```coffeescript
+robot.hear /HEY$/i, (msg) ->
+	msg.reply "Yo!"
+```
+
+#### Workaround
+
+In order to have both working (send messages to any public channel + hubot actively listening to certain messages) you would need to:
+
+* A) Have an Outgoing Hook with **no channel set** with each 'Hear' (e.g 'hey') regex separated by comma
+* B) Have an Outgoing Hook to each Channel you want 'Hear' method to work
+* Once you define which option you prefer you must update MATTERMOST_TOKEN with the additional token you got (_MATTERMOST_TOKEN="<token1>,<token2>"), otherwise Hubot will simply ignore the incoming event
+
+Example of Outgoing Hook created using option A:
+```sh
+URLs: http://localhost:8080/hubot/incoming
+Trigger Words: hey
+Token: 9r8i6s86hbgc8r57hqc5ywijac
+```
+
+By simply typing: *"hey"* in any channel Hubot should be able to respond with *"Yo!"* as Mattermost now sends a POST to Hubot.
 
 ## License
 The MIT License. See `LICENSE` file.
