@@ -60,7 +60,7 @@ class Mattermost extends Adapter
           res.end()
 
   getBool: (val) ->
-    return !!JSON.parse(String(val).toLowerCase());
+    return !!JSON.parse(String(val).toLowerCase())
 
 exports.use = (robot) ->
   new Mattermost robot
