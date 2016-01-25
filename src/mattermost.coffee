@@ -33,8 +33,8 @@ class Mattermost extends Adapter
     @tokens = process.env.MATTERMOST_TOKEN
     @channel = process.env.MATTERMOST_CHANNEL
     @endpoint = process.env.MATTERMOST_ENDPOINT
-    @url = process.env.MATTERMOST_INCOME_URL 
-    @icon = process.env.MATTERMOST_ICON_URL 
+    @url = process.env.MATTERMOST_INCOME_URL
+    @icon = process.env.MATTERMOST_ICON_URL
     @username = process.env.MATTERMOST_HUBOT_USERNAME
     @selfsigned = this.getBool(process.env.MATTERMOST_SELFSIGNED_CERT) if process.env.MATTERMOST_SELFSIGNED_CERT
     if @selfsigned then process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0"
@@ -49,7 +49,7 @@ class Mattermost extends Adapter
       process.exit 1
     @robot.router.post @endpoint, (req, res) =>
      # split string values by ',' as process.env return type string no matter what has been defined (eg array, string, int)
-     for token in @tokens.split(',')     
+     for token in @tokens.split(',')
        if token is req.body.token
          msg = req.body.text
          user = @robot.brain.userForId(req.body.user_id)
