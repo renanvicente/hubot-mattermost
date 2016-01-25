@@ -48,16 +48,25 @@ class Mattermost extends Adapter
       @robot.logger.emergency "MATTERMOST_INCOME_URL is required"
       process.exit 1
     @robot.router.post @endpoint, (req, res) =>
+      unless req.body.token?
+        res.writeHead 403, 'Content-Type': 'text/plain'
+        res.end()
+        return
+
       # split string values by ',' as process.env return type string no matter what has been defined (eg array, string, int)
-      for token in @tokens.split(',')
-        if token is req.body.token
-          msg = req.body.text
-          user = @robot.brain.userForId(req.body.user_id)
-          user.name = req.body.user_name
-          user.room = req.body.channel_name
-          @robot.receive new TextMessage(user, msg)
-          res.writeHead 200, 'Content-Type': 'text/plain'
-          res.end()
+      tokens = @tokens.split ','
+      unless req.body.token in tokens
+        res.writeHead 403, 'Content-Type': 'text/plain'
+        res.end()
+        return
+
+      msg = req.body.text
+      user = @robot.brain.userForId(req.body.user_id)
+      user.name = req.body.user_name
+      user.room = req.body.channel_name
+      @robot.receive new TextMessage(user, msg)
+      res.writeHead 200, 'Content-Type': 'text/plain'
+      res.end()
 
   getBool: (val) ->
     return !!JSON.parse(String(val).toLowerCase())
