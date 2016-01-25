@@ -42,7 +42,7 @@ In addition, the following optional variables can be set:
 
 * `MATTERMOST_CHANNEL` _string, default: none_ - Override the channel that you want to reply to.
 * `MATTERMOST_ICON_URL` _string, default: none_ - If Enable Overriding of Icon from Webhooks is enabled you can set a url with the icon that you want for your hubot.
-* `MATTERMOST_HUBOT_USERNAME` _string, default: none_ - If Enable Overriding of Usernames from Webhooks you can set a custom username to show in mattermost.
+* `MATTERMOST_HUBOT_USERNAME` _string, default: Hubot's name_ - You can set a custom username to respond in mattermost. If Enable Overriding of Usernames from Webhooks, this name is shown in mattermost.
 * `MATTERMOST_SELFSIGNED_CERT` _boolean, default: none_ - If true it will ignore if MATTERMOST_ENDPOINT has a self signed certificate.
 
 ## Example for Environment variables
