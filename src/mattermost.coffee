@@ -11,7 +11,7 @@ class Mattermost extends Adapter
       data = JSON.stringify({
         icon_url: @icon,
         channel: @channel ? envelope.user?.room ? envelope.room, # send back to source channel only if not overwritten,
-        username: @username,
+        username: @robot.name,
         text: str
       })
       @robot.http(@url)
@@ -35,7 +35,8 @@ class Mattermost extends Adapter
     @endpoint = process.env.MATTERMOST_ENDPOINT
     @url = process.env.MATTERMOST_INCOME_URL 
     @icon = process.env.MATTERMOST_ICON_URL 
-    @username = process.env.MATTERMOST_HUBOT_USERNAME
+    if process.env.MATTERMOST_HUBOT_USERNAME?
+      @robot.name = process.env.MATTERMOST_HUBOT_USERNAME
     @selfsigned = this.getBool(process.env.MATTERMOST_SELFSIGNED_CERT) if process.env.MATTERMOST_SELFSIGNED_CERT
     if @selfsigned then process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0"
     unless @tokens?
