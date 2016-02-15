@@ -33,8 +33,8 @@ class Mattermost extends Adapter
     @tokens = process.env.MATTERMOST_TOKEN
     @channel = process.env.MATTERMOST_CHANNEL
     @endpoint = process.env.MATTERMOST_ENDPOINT
-    @url = process.env.MATTERMOST_INCOME_URL
-    @icon = process.env.MATTERMOST_ICON_URL
+    @url = process.env.MATTERMOST_INCOME_URL 
+    @icon = process.env.MATTERMOST_ICON_URL 
     @username = process.env.MATTERMOST_HUBOT_USERNAME
     @selfsigned = this.getBool(process.env.MATTERMOST_SELFSIGNED_CERT) if process.env.MATTERMOST_SELFSIGNED_CERT
     if @selfsigned then process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0"
