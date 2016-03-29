@@ -19,7 +19,7 @@ Here is a sample run:
 
 * Follow the "[Getting Started With Hubot](https://hubot.github.com/docs/)" guide to get a local installation of Hubot
 * When you run the command `yo hubot` it should ask for an adapter, input "mattermost" so it can download this adapter automatically for you
-* Create an incoming webhook and outgoing webhook integration in your mattermost. You can follow the instructions on [Incoming Webhooks](https://github.com/mattermost/platform/blob/master/doc/integrations/webhooks/Incoming-Webhooks.md#enabling-incoming-webhooks) and [Outgoing Webhooks](https://github.com/mattermost/platform/blob/master/doc/integrations/webhooks/Outgoing-Webhooks.md#enabling-outgoing-webhooks) to setup.
+* Create an incoming webhook and outgoing webhook integration in your mattermost. You can follow the instructions on [Incoming Webhooks](http://docs.mattermost.com/developer/webhooks-incoming.html#enabling-incoming-webhooks) and [Outgoing Webhooks](http://docs.mattermost.com/developer/webhooks-outgoing.html#enabling-outgoing-webhooks) to setup.
 * Set the environment variables MATTERMOST_ENDPOINT, MATTERMOST_INCOME_URL and MATTERMOST_TOKEN based on your mattermost configuration.
 * ***It's important to remember that if you don't run Hubot alongside with Mattermost (locally) you must ensure that Mattermost instance can connect to the machine where Hubot is installed as it will be running on port 8080***. This is due to Webhooks nature (both Incoming and Outgoing) where a HTTP POST will be send both ways for communication purposes (sending and receiving Mattermost/Hubot messages).
 
