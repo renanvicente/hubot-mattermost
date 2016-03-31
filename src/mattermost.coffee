@@ -28,8 +28,6 @@ class Mattermost extends Adapter
     @send command, strings
 
   run: ->
-    # Tell Hubot we're connected so it can load scripts
-    @emit "connected"
     @tokens = process.env.MATTERMOST_TOKEN
     @channel = process.env.MATTERMOST_CHANNEL
     @endpoint = process.env.MATTERMOST_ENDPOINT
@@ -48,6 +46,8 @@ class Mattermost extends Adapter
     unless @url?
       @robot.logger.emergency "MATTERMOST_INCOME_URL is required"
       process.exit 1
+    # Tell Hubot we're connected so it can load scripts
+    @emit "connected"
     @robot.router.post @endpoint, (req, res) =>
      # split string values by ',' as process.env return type string no matter what has been defined (eg array, string, int)
      for token in @tokens.split(',')     
