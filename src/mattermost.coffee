@@ -53,6 +53,9 @@ class Mattermost extends Adapter
      for token in @tokens.split(',')     
        if token is req.body.token
          msg = req.body.text
+         # support for slash commands
+         if req.body.command?
+            msg = req.body.command + ' ' + msg
          user = @robot.brain.userForId(req.body.user_id)
          user.name = req.body.user_name
          user.room = req.body.channel_name
