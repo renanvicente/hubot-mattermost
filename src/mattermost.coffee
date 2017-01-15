@@ -53,12 +53,15 @@ class Mattermost extends Adapter
      for token in @tokens.split(',')     
        if token is req.body.token
          msg = req.body.text
+         # support for slash commands
+         if req.body.command?
+            msg = req.body.command.replace(/^\//,'') + ' ' + msg
          user = @robot.brain.userForId(req.body.user_id)
          user.name = req.body.user_name
          user.room = req.body.channel_name
          @robot.receive new TextMessage(user, msg)
-         res.writeHead 200, 'Content-Type': 'text/plain'
-         res.end()
+         res.writeHead 200, 'Content-Type': 'application/json'
+         res.end('{}')
 
   getBool: (val) ->
     return !!JSON.parse(String(val).toLowerCase());
