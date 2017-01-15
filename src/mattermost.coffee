@@ -55,7 +55,7 @@ class Mattermost extends Adapter
          msg = req.body.text
          # support for slash commands
          if req.body.command?
-            msg = req.body.command + ' ' + msg
+            msg = req.body.command.replace(/^\//,'') + ' ' + msg
          user = @robot.brain.userForId(req.body.user_id)
          user.name = req.body.user_name
          user.room = req.body.channel_name
