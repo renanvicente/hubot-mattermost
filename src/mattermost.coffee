@@ -60,8 +60,8 @@ class Mattermost extends Adapter
          user.name = req.body.user_name
          user.room = req.body.channel_name
          @robot.receive new TextMessage(user, msg)
-         res.writeHead 200, 'Content-Type': 'text/plain'
-         res.end()
+         res.writeHead 200, 'Content-Type': 'application/json'
+         res.end('{}')
 
   getBool: (val) ->
     return !!JSON.parse(String(val).toLowerCase());
